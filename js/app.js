@@ -9,10 +9,26 @@ class Budget {
 
 // Related to the operations with html
 class HTML {
+
+    // Inserts the budget into html when user submits it
     insertBudget(amount) {
         budgetTotal.innerHTML = `${amount}`;
         budgetLeft.innerHTML = `${amount}`;
     }
+
+    // Displays message (correct or invalid)
+    printMessage(message, className) {
+        const messageWrapper = document.createElement('div');
+        messageWrapper.classList.add(className);
+        messageWrapper.innerHTML = `${message}`;
+        document.querySelector('.primary').insertBefore(messageWrapper, addExpenseForm);
+
+        setTimeout(function() {
+            document.querySelector('.error').remove()
+        }, 2000)
+    }
+
+
 }
 
 
@@ -49,6 +65,15 @@ function eventListeners() {
     // When a new expense is added
     addExpenseForm.addEventListener('submit', function(e) {
         e.preventDefault();
-    
+        
+        // Read the input values
+        const expenseName = document.querySelector('#name').value;
+        const amount = document.querySelector('#amount').value;
+
+        if(expenseName === '' || amount === '') {
+            html.printMessage('There was an error, all the fields are mandatory', 'error');
+        } else {
+            console.log('correct')
+        }
     })
 }

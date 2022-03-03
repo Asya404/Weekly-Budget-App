@@ -17,7 +17,7 @@
         </header>
         <section class="main-content">
             <div class="wrapper">
-                <div class="content">
+                <div class="content primary">
                     <h2 class="text-center">Add your Expenses here...</h2>
                     <form id="add-expense" action="#">
                         <div class="form-group">
@@ -32,16 +32,17 @@
                     </form>
                 </div>
 
-                <div class="content">
+                <div class="content secondary">
                     <h2>List</h2>
-                    <div id="expenses">
+                    <div class="expenses">
                         <ul class="list-group"></ul>
                     </div>
-                    <div id="budget" class="budget">
-                        <div class="alert alert-primary">
+
+                    <div class="budget-content">
+                        <div class="budget budget-primary">
                             <p>Budget: $ <span id="total"></span></p>
                         </div>
-                        <div class="alert alert-success">
+                        <div class="budget budget-success">
                             <p>Left: $ <span id="left"></span></p>
                         </div>
                     </div>

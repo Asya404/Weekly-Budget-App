@@ -93,23 +93,32 @@ h2 {
     box-shadow: 0 0 0 3px rgb(0 123 255 / 25%);
 }
 
-.alert-primary {
+.budget-primary {
     color: #004085;
     background-color: #cce5ff;
     border: 1px solid #b8daff;
 }
 
-.alert-success {
+.budget-success {
     color: #155724;
     background-color: #d4edda;
     border: 1px solid #c3e6cb;
 }
 
-.alert {
+.budget {
     position: relative;
     padding: 10px 20px;
     margin-bottom: 1rem;
     border-radius: 5px;
+}
+
+.error {
+    background-color: #FBE9E7;
+    border: 1px solid #F4511E;
+    padding: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #F4511E;
 }
 
 .btn-primary {
