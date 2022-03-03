@@ -28,6 +28,16 @@ class HTML {
         }, 2000)
     }
 
+    // Displays the expenses from the form into the list
+    addExpenseToList(name, amount) {
+        const expensesList = document.querySelector('.expenses ul');
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <div>${name}</div>
+            <div class="expenses__amount">$ ${amount}</div>`;
+        expensesList.appendChild(li);
+    }
+
 
 }
 
@@ -62,6 +72,8 @@ function eventListeners() {
         }
     })
 
+
+
     // When a new expense is added
     addExpenseForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -73,7 +85,9 @@ function eventListeners() {
         if(expenseName === '' || amount === '') {
             html.printMessage('There was an error, all the fields are mandatory', 'error');
         } else {
-            console.log('correct')
+            // Add expenses into the list
+            html.addExpenseToList(expenseName, amount);
+            
         }
     })
 }
