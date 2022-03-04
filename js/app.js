@@ -1,8 +1,12 @@
-// Classes
+// CLASSES
 class Budget {
     constructor(budget) {
         this.budgetTotal = budget;
         this.budgetLeft = budget;
+    }
+
+    substractFromBudget(amount) {
+       return this.budgetLeft -= amount;
     }
 }
 
@@ -25,6 +29,7 @@ class HTML {
 
         setTimeout(function() {
             document.querySelector('.error').remove()
+            addExpenseForm.reset();
         }, 2000)
     }
 
@@ -38,12 +43,29 @@ class HTML {
         expensesList.appendChild(li);
     }
 
+    // Substract expense amount from budget
+    trackBudget(amount) {
+        const budgetLeftDollars = budget.substractFromBudget(amount);
+        budgetLeft.innerHTML = `${budgetLeftDollars}`;
 
+        // Check when 20% is left
+        if((budget.budgetTotal / 4) > budgetLeftDollars) {
+            budgetLeft.parentElement.parentElement.classList.remove('budget-success');
+            budgetLeft.parentElement.parentElement.classList.add('budget-danger');
+
+        // Check when 50% is left
+        } else if((budget.budgetTotal / 2) > budgetLeftDollars) {
+            budgetLeft.parentElement.parentElement.classList.remove('budget-success');
+            budgetLeft.parentElement.parentElement.classList.add('budget-warning');
+        }
+    }
 }
 
 
 
-// Variables
+
+
+// VARIABLES
 const addExpenseForm = document.querySelector('#add-expense'),
         budgetTotal = document.querySelector('span#total'),
         budgetLeft = document.querySelector('span#left');
@@ -55,7 +77,9 @@ let budget, userBudget;
 
 
 
-// Event Listeners
+
+
+// EVENT LISTENERS
 eventListeners();
 function eventListeners() {
 
@@ -67,6 +91,8 @@ function eventListeners() {
         if(userBudget === null || userBudget === '' || userBudget === '0') {
             window.location.reload();
         } else {
+
+            // if ok -> create new obj budget, then insert into html
             budget = new Budget(userBudget);
             html.insertBudget(budget.budgetTotal);
         }
@@ -87,7 +113,7 @@ function eventListeners() {
         } else {
             // Add expenses into the list
             html.addExpenseToList(expenseName, amount);
-            
+            html.trackBudget(amount);
         }
     })
 }
